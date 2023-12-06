@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import clsx from "clsx";
 
+import { ThemeProvider } from "@/context/ThemeProvider";
+
 const inter = Inter({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -32,21 +34,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider
-      appearance={{
-        elements: {
-          formButtonPrimary: "primary-gradient",
-          footerActionLink: "primary-text-gradient hover:text-primary-500",
-        },
-      }}
-    >
-      <html lang="en">
-        <body className={clsx(inter.variable, spaceGrotesk.variable)}>
-          <div className="h1-bold">this is a piece of text.</div>
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={clsx(inter.variable, spaceGrotesk.variable)}>
+        <div className="h1-bold">this is a piece of text.</div>
+        <ClerkProvider
+          appearance={{
+            elements: {
+              formButtonPrimary: "primary-gradient",
+              footerActionLink: "primary-text-gradient hover:text-primary-500",
+            },
+          }}
+        >
+          <ThemeProvider>{children}</ThemeProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
 
