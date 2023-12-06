@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import clsx from "clsx";
 
-import { ThemeProvider } from "./context/ThemeProvider";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
