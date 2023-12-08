@@ -8,7 +8,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import Image from "next/image";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 import { useTheme } from "@/context/ThemeProvider";
 import { themes } from "@/constants";
@@ -19,7 +19,7 @@ export const Theme = () => {
     <Menubar className="relative border-none bg-transparent shadow-none">
       <MenubarMenu>
         <MenubarTrigger
-          className={clsx(
+          className={cn(
             "focus:bg-light-900 data-[state=open]:bg-light-900",
             "dark:foucus:bg-dark-200 dark:data-[state=open]:bg-dark-200"
           )}
@@ -43,7 +43,7 @@ export const Theme = () => {
           )}
         </MenubarTrigger>
         <MenubarContent
-          className={clsx(
+          className={cn(
             "absolute right-[-3rem] mt-3 min-w-[120px] rounded border py-2",
             "dark:border-dark-400 dark:bg-dark-300"
           )}
@@ -51,7 +51,7 @@ export const Theme = () => {
           {themes.map((item) => (
             <MenubarItem
               key={item.value}
-              className={clsx(
+              className={cn(
                 "flex items-center gap-4 px-2.5 py-2",
                 "dark:focus:bg-dark-400"
               )}
@@ -70,12 +70,12 @@ export const Theme = () => {
                 alt={item.value}
                 width={16}
                 height={16}
-                className={clsx({
+                className={cn({
                   "active-theme": mode === item.value,
                 })}
               />
               <p
-                className={clsx("body-semibold text-light-500", {
+                className={cn("body-semibold text-light-500", {
                   "text-primary-500": mode === item.value,
                   "text-dark100_light900": mode !== item.value,
                 })}

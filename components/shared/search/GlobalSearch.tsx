@@ -1,10 +1,10 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 
 export const GlobalSearch = () => {
   return (
-    <div className={clsx("relative w-full max-w-[600px]", "max-lg:hidden")}>
+    <div className={cn("relative w-full max-w-[600px]", "max-lg:hidden")}>
       <div className="background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4">
         <Image
           src="/assets/icons/search.svg"
