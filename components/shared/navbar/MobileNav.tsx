@@ -6,11 +6,11 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { SignedOut } from "@clerk/nextjs";
-import clsx from "clsx";
+import { SignedOut, SignedIn, useClerk } from "@clerk/nextjs";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 import { sidebarLinks } from "@/constants";
@@ -28,7 +28,7 @@ const NavContent = () => {
           <SheetClose asChild key={item.route}>
             <Link
               href={item.route}
-              className={clsx(
+              className={cn(
                 "flex items-center justify-start gap-4 bg-transparent p-4",
                 {
                   "primary-gradient rounded-lg text-light-900": isActive,
@@ -41,10 +41,10 @@ const NavContent = () => {
                 alt={item.label}
                 width={20}
                 height={20}
-                className={clsx({ "invert-colors": !isActive })}
+                className={cn({ "invert-colors": !isActive })}
               />
               <p
-                className={clsx(
+                className={cn(
                   { "base-bold": isActive },
                   { "base-medium": !isActive }
                 )}
@@ -60,6 +60,8 @@ const NavContent = () => {
 };
 
 export const MobileNav = () => {
+  const { signOut } = useClerk();
+  const router = useRouter();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -68,7 +70,7 @@ export const MobileNav = () => {
           width={36}
           height={36}
           alt="hambergur menu icon"
-          className={clsx("invert-colors", "sm:hidden")}
+          className={cn("invert-colors", "sm:hidden")}
         />
       </SheetTrigger>
       <SheetContent
@@ -108,6 +110,21 @@ export const MobileNav = () => {
               </SheetClose>
             </div>
           </SignedOut>
+          <SignedIn>
+            <Button
+              onClick={() => signOut(() => router.push("/"))}
+              className="flex items-center justify-start gap-4 bg-transparent p-4"
+            >
+              <Image
+                src="/assets/icons/arrow-left.svg"
+                alt="logout icon"
+                width={20}
+                height={20}
+                className="invert-colors"
+              />
+              <p className="base-medium">Log Out</p>
+            </Button>
+          </SignedIn>
         </div>
       </SheetContent>
     </Sheet>

@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { SignedIn, UserButton } from "@clerk/nextjs";
@@ -10,7 +10,7 @@ import { MobileNav } from "./MobileNav";
 export const Navbar = () => {
   return (
     <nav
-      className={clsx(
+      className={cn(
         "flex-between background-light900_dark200 fixed z-50 w-full gap-5 p-6 shadow-light-300",
         "dark:shadow-none",
         "sm:px-12"
@@ -24,7 +24,7 @@ export const Navbar = () => {
           height={23}
         />
         <p
-          className={clsx(
+          className={cn(
             "h2-bold font-spaceGrotesk text-dark-100",
             "dark:text-light-900",
             "max-sm:hidden"

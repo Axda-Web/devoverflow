@@ -1,9 +1,9 @@
 import React from "react";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 import { Navbar } from "@/components/shared/navbar/Navbar";
-import { LeftSidebar } from "@/components/LeftSidebar";
-import { RightSidebar } from "@/components/RightSidebar";
+import { LeftSidebar } from "@/components/shared/LeftSidebar";
+import { RightSidebar } from "@/components/shared/RightSidebar";
 
 export default function RootLayout({
   children,
@@ -16,7 +16,7 @@ export default function RootLayout({
       <div className="flex">
         <LeftSidebar />
         <section
-          className={clsx(
+          className={cn(
             "flex min-h-screen flex-1 flex-col px-6 pb-6 pt-36",
             "max-md:pb-14",
             "sm:px-14"
