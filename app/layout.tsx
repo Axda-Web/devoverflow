@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default function GlobalLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -36,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(inter.variable, spaceGrotesk.variable)}>
-        <div className="h1-bold">this is a piece of text.</div>
         <ClerkProvider
           appearance={{
             elements: {
