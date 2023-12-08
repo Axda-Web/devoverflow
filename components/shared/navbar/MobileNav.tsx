@@ -7,7 +7,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { SignedOut } from "@clerk/nextjs";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 
 import { sidebarLinks } from "@/constants";
 
-const NavContent = () => {
+export const NavContent = () => {
   const pathname = usePathname();
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
@@ -28,7 +28,7 @@ const NavContent = () => {
           <SheetClose asChild key={item.route}>
             <Link
               href={item.route}
-              className={clsx(
+              className={cn(
                 "flex items-center justify-start gap-4 bg-transparent p-4",
                 {
                   "primary-gradient rounded-lg text-light-900": isActive,
@@ -41,10 +41,10 @@ const NavContent = () => {
                 alt={item.label}
                 width={20}
                 height={20}
-                className={clsx({ "invert-colors": !isActive })}
+                className={cn({ "invert-colors": !isActive })}
               />
               <p
-                className={clsx(
+                className={cn(
                   { "base-bold": isActive },
                   { "base-medium": !isActive }
                 )}
@@ -68,7 +68,7 @@ export const MobileNav = () => {
           width={36}
           height={36}
           alt="hambergur menu icon"
-          className={clsx("invert-colors", "sm:hidden")}
+          className={cn("invert-colors", "sm:hidden")}
         />
       </SheetTrigger>
       <SheetContent

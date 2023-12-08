@@ -4,7 +4,7 @@ import React from "react";
 import { Inter, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 import { ThemeProvider } from "@/context/ThemeProvider";
 
@@ -35,7 +35,7 @@ export default function GlobalLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(inter.variable, spaceGrotesk.variable)}>
+      <body className={cn(inter.variable, spaceGrotesk.variable)}>
         <ClerkProvider
           appearance={{
             elements: {

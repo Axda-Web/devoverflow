@@ -1,5 +1,5 @@
 import React from "react";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 export default function AuthLayout({
   children,
@@ -8,7 +8,7 @@ export default function AuthLayout({
 }) {
   return (
     <main
-      className={clsx("flex min-h-screen w-full items-center justify-center")}
+      className={cn("flex min-h-screen w-full items-center justify-center")}
     >
       {children}
     </main>
