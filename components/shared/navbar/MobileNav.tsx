@@ -6,16 +6,16 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { SignedOut } from "@clerk/nextjs";
+import { SignedOut, SignedIn, useClerk } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 import { sidebarLinks } from "@/constants";
 
-export const NavContent = () => {
+const NavContent = () => {
   const pathname = usePathname();
   return (
     <section className="flex h-full flex-col gap-6 pt-16">
@@ -60,6 +60,8 @@ export const NavContent = () => {
 };
 
 export const MobileNav = () => {
+  const { signOut } = useClerk();
+  const router = useRouter();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -108,6 +110,21 @@ export const MobileNav = () => {
               </SheetClose>
             </div>
           </SignedOut>
+          <SignedIn>
+            <Button
+              onClick={() => signOut(() => router.push("/"))}
+              className="flex items-center justify-start gap-4 bg-transparent p-4"
+            >
+              <Image
+                src="/assets/icons/arrow-left.svg"
+                alt="logout icon"
+                width={20}
+                height={20}
+                className="invert-colors"
+              />
+              <p className="base-medium">Log Out</p>
+            </Button>
+          </SignedIn>
         </div>
       </SheetContent>
     </Sheet>
